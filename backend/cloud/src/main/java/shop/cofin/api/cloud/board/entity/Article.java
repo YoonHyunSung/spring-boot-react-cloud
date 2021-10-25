@@ -3,7 +3,7 @@ package shop.cofin.api.cloud.board.entity;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import org.springframework.stereotype.Component;
-import shop.cofin.api.cloud.user.entity.User;
+import shop.cofin.api.cloud.user.domain.User;
 
 import javax.persistence.*;
 
@@ -19,11 +19,11 @@ public class Article {
     @Column @NotNull private String content;
     @Column(name = "written_date") @NotNull private String writtenDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
+    @ManyToOne
+    @JoinColumn(name = "item_id", insertable = false, updatable = false)
     private User item;
 }
